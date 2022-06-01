@@ -52,13 +52,13 @@ def keybInit():
 
 def readKeyb():
 
-    keyPad=( (1,2,3,"D")
-          , (4,5,6,"M")
-          , (7,8,9,"R")
-          , ("C",0,"A","I"))
+    keyPad=( ("1","2","3"," / ")
+          , ("4","5","6"," * ")
+          , ("7","8","9"," - ")
+          , ("C   ","0"," + ","= "))
     row=(R1,R2,R3,R4)
     col=(C1,C2,C3,C4)
-    key="E"
+    key=""
     for i in range(4):
         GPIO.output(row[i], GPIO.HIGH)
         for v in range(4):    
@@ -167,3 +167,11 @@ def lcd_string(message,line,style):
 #   # Toggle backlight on-off-on
 #     GPIO.output(LED_ON, flag)
  
+def refresh_screen(screenNumber1Sign,number1,operator,screenNumber2Sign,number2,equalSign,screenNumber3Sign,result,memory1,memory2):
+
+    lcd_byte(0x01,LCD_CMD) # 000001 Clear display
+    lcd_string(">>> "+screenNumber1Sign+number1+operator+screenNumber2Sign+number2+equalSign+screenNumber3Sign+result,LCD_LINE_1,1)
+    lcd_string("*1= " + memory1 + "   *2= " + memory2,LCD_LINE_2,1)
+
+
+
