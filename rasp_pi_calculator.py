@@ -119,9 +119,9 @@ while True:
         elif(operator == " * "):
             operand3=round(operand1*operand2,4) 
         elif(operator == " / "):
-            if(operand2!=0):
+            try:
                 operand3=round(operand1/operand2,4)
-            else:
+            except ZeroDivisionError():
                 operand3=80085
 
         memory2=memory1
